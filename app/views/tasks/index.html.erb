@@ -1,5 +1,15 @@
 <h1>All the tasks</h1>
 
 <% @tasks.each do |task| %>
-  <h4><%= task.title %></h4>
+  <h4>
+    <%= link_to task.title, task_path(task) %>
+    <%= link_to task_path(task),
+      method: :delete,
+      data: { confirm: "Are you sure?" },
+      class: "btn btn-danger" do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+  </h4>
 <% end %>
+
+<%= link_to "add task", new_task_path, class: "btn btn-success" %>
